@@ -1,0 +1,52 @@
+.product-card {
+    cursor: pointer;
+    transition: all .35s ease;
+    width: fit-content;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    height: 380px;      /* You can adjust this */
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit:contain;   /* Makes all images the same size */
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.06);
+}
+
+
+.quick-add {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+
+    width: 100%;
+    height: 50px;
+
+    background: rgba(255,255,255,.95);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 600;
+
+    transition: .35s;
+}
+
+.product-card:hover .quick-add {
+    bottom: 0;
+}
