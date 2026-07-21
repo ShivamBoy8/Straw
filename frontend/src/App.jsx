@@ -1,3 +1,4 @@
+
 import Navbar from "./components/Navbar/Navbar";
 import ProductCard from "./components/ProductCard/ProductCard";
 
@@ -11,3 +12,5 @@ function App() {
 }
 
 export default App;
+
+
