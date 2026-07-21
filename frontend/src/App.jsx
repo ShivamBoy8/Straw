@@ -1,14 +1,16 @@
-import React from 'react'
-import Footer from './Components/Footer'
-import Home from './Pages/Home'
 
-const App = () => {
+import Navbar from "./components/Navbar/Navbar";
+import ProductCard from "./components/ProductCard/ProductCard";
+
+function App() {
   return (
-    <div>
-      <Footer/>
+    <>
       
-    </div>
-  )
+      <ProductCard />
+    </>
+  );
 }
 
-export default App
+export default App;
+
+
