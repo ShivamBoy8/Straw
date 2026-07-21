@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Cart = require("../model/Cart");
 const Order = require("../model/Order");
 
@@ -15,12 +16,12 @@ const createOrder = async (req, res) => {
     }
 
     if (!shippingAddress) {
-  return res.status(400).json({
-    success: false,
-    message: "Shipping address is required",
-  });
-}
-    
+      return res.status(400).json({
+        success: false,
+        message: "Shipping address is required",
+      });
+    }
+
     for (const item of cart.items) {
       if (item.product.stock < item.quantity) {
         return res.status(400).json({
@@ -175,4 +176,92 @@ const cancelOrder = async (req, res) => {
   }
 };
 
-module.exports={createOrder,getMyOrders,getOrderById,cancelOrder}
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .sort({ createdAt: -1 })
+      .populate("user", "name email")
+      .populate("items.product");
+
+    return res.status(200).json({
+      success: true,
+      count: orders.length,
+      orders,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid order id",
+      });
+    }
+    const { orderStatus } = req.body;
+
+    const validStatuses = [
+      "Pending",
+      "Confirmed",
+      "Shipped",
+      "Delivered",
+      "Cancelled",
+    ];
+
+    if (!validStatuses.includes(orderStatus)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid order status",
+      });
+    }
+
+    const order = await Order.findById(id);
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    if (
+      order.orderStatus === "Delivered" ||
+      order.orderStatus === "Cancelled"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: `Order is already ${order.orderStatus}`,
+      });
+    }
+
+    order.orderStatus = orderStatus;
+
+    await order.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Order status updated successfully",
+      order,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+module.exports = {
+  createOrder,
+  getMyOrders,
+  getOrderById,
+  cancelOrder,
+  getAllOrders,
+  updateOrderStatus,
+};
