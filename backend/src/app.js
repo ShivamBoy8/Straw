@@ -4,6 +4,7 @@ const app = express();
 
 const authRoutes = require("./routes/authRoutes");
 const productRoutes=require("./routes/productRoutes")
+const cartRoutes = require("./routes/cartRoutes");
 
 app.use(express.json());
 app.use(cookieParser())
@@ -17,5 +18,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 module.exports = app;
