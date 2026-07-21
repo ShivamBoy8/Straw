@@ -1,0 +1,43 @@
+.gazu-logo{
+    font-size:72px;
+    letter-spacing:16px;
+    font-weight:bold;
+    animation: fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* laptop hide */
+.mobile-line {
+  width: 80px;
+  height: 4px;
+  background: #000;
+  border-radius: 10px;
+  margin: 15px auto 0;
+}
+
+@media (min-width: 992px) {
+  .mobile-line {
+    display: none;
+  }
+}
+
+.rounded-circle:hover .feature-icon{
+    transform:rotate(360deg);
+}
+
+.feature-icon{
+    transition:transform .5s ease;
+}
