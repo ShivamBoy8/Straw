@@ -1,16 +1,13 @@
-
 import Navbar from "./components/Navbar/Navbar";
-import ProductCard from "./components/ProductCard/ProductCard";
+import CartPage from "./components/Cart/CartPage";
 
 function App() {
   return (
     <>
-      
-      <ProductCard />
+      <Navbar />
+      <CartPage />
     </>
   );
 }
 
 export default App;
-
-
