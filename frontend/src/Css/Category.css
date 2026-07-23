@@ -1,0 +1,69 @@
+
+
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+
+
+.category-item {
+  transition: opacity 0.2s ease;
+}
+
+.category-item:hover {
+  opacity: 0.7;
+}
+
+.category-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+
+
+
+
+/* Tablet & Laptop View: Single row with smooth hidden scrollbar */
+/* --- Mobile View (<768px) --- */
+@media (max-width: 767.98px) {
+  .category-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  .category-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* --- Tablet & Laptop View (>=768px) --- */
+@media (min-width: 768px) {
+  .category-scroll-container {
+    -ms-overflow-style: none; /* Hide scrollbars in IE/Edge */
+    scrollbar-width: none;    /* Hide scrollbars in Firefox */
+  }
+
+  .category-scroll-container::-webkit-scrollbar {
+    display: none;             /* Hide scrollbars in Chrome/Safari */
+  }
+
+  .category-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* --- Laptop / Desktop Screens (>=992px) --- */
+@media (min-width: 992px) {
+  .category-label {
+    font-size: 0.72rem;
+  }
+}
