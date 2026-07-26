@@ -17,13 +17,13 @@ const productSchema = new mongoose.Schema(
     brand: {
       type: String,
       trim: true,
-      required: true,
+      default:"STRAW"
     },
 
     category: {
       type: String,
       required: true,
-      enum: ["Men", "Women", "Kids", "Beauty"],
+      enum: ["Men", "Women", "Kids"],
     },
     subCategory: {
       type: String,

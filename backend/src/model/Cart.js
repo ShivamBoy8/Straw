@@ -25,6 +25,11 @@ const cartSchema = new Schema(
           default: 1,
         },
 
+        size: {
+          type: String,
+          required: true,
+        },
+
         price: {
           type: Number,
           required: true,
@@ -42,7 +47,7 @@ const cartSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("Cart", cartSchema);

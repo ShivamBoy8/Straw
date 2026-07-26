@@ -1,0 +1,185 @@
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { createPortal } from "react-dom";
+import {
+  FiCheckCircle,
+  FiXCircle,
+  FiInfo,
+  FiAlertTriangle,
+  FiX,
+} from "react-icons/fi";
+import "./Toast.css";
+
+const ToastContext = createContext(null);
+
+const ICONS = {
+  success: FiCheckCircle,
+  error: FiXCircle,
+  info: FiInfo,
+  warning: FiAlertTriangle,
+};
+
+const DEFAULT_DURATION = 3800;
+
+export const ToastProvider = ({ children }) => {
+  const [toasts, setToasts] = useState([]);
+  const [mounted, setMounted] = useState(false);
+  const timers = useRef({});
+
+  useEffect(() => {
+    setMounted(true);
+
+    return () => {
+      Object.values(timers.current).forEach((timer) => clearTimeout(timer));
+      timers.current = {};
+    };
+  }, []);
+
+  const removeToast = useCallback((id) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+
+    if (timers.current[id]) {
+      clearTimeout(timers.current[id]);
+      delete timers.current[id];
+    }
+  }, []);
+
+  const addToast = useCallback(
+    (message, type = "info", duration = DEFAULT_DURATION, extra = {}) => {
+      const id = `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+
+      setToasts((prev) => [...prev, { id, message, type, duration, ...extra }]);
+
+      if (duration !== null && duration !== undefined) {
+        if (timers.current[id]) {
+          clearTimeout(timers.current[id]);
+        }
+
+        timers.current[id] = setTimeout(() => removeToast(id), duration);
+      }
+
+      return id;
+    },
+    [removeToast],
+  );
+
+  const handleConfirm = useCallback(
+    async (toastItem) => {
+      if (toastItem.onConfirm) {
+        await toastItem.onConfirm();
+      }
+      removeToast(toastItem.id);
+    },
+    [removeToast],
+  );
+
+  const handleCancel = useCallback(
+    (toastItem) => {
+      if (toastItem.onCancel) {
+        toastItem.onCancel();
+      }
+      removeToast(toastItem.id);
+    },
+    [removeToast],
+  );
+
+  const toast = {
+    success: (msg, duration) => addToast(msg, "success", duration),
+    error: (msg, duration) => addToast(msg, "error", duration),
+    info: (msg, duration) => addToast(msg, "info", duration),
+    warning: (msg, duration) => addToast(msg, "warning", duration),
+    confirm: (
+      msg,
+      {
+        onConfirm,
+        onCancel,
+        confirmText = "Confirm",
+        cancelText = "Cancel",
+        duration = null,
+      } = {},
+    ) =>
+      addToast(msg, "warning", duration, {
+        confirm: true,
+        confirmText,
+        cancelText,
+        onConfirm,
+        onCancel,
+      }),
+    dismiss: removeToast,
+  };
+
+  return (
+    <ToastContext.Provider value={toast}>
+      {children}
+
+      {mounted &&
+        createPortal(
+          <div className="toast-container" aria-live="polite" aria-atomic="true">
+            {toasts.map((t) => {
+              const Icon = ICONS[t.type] || FiInfo;
+              return (
+                <div
+                  className={`toast toast-${t.type} ${t.confirm ? "toast-confirm" : ""}`}
+                  key={t.id}
+                  role="status"
+                >
+                  <Icon className="toast-icon" />
+
+                  <div className="toast-content">
+                    <p className="toast-message">{t.message}</p>
+
+                    {t.confirm && (
+                      <div className="toast-actions">
+                        <button
+                          className="toast-action-btn toast-action-btn-secondary"
+                          onClick={() => handleCancel(t)}
+                        >
+                          {t.cancelText}
+                        </button>
+                        <button
+                          className="toast-action-btn toast-action-btn-primary"
+                          onClick={() => handleConfirm(t)}
+                        >
+                          {t.confirmText}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    className="toast-close"
+                    onClick={() => removeToast(t.id)}
+                    aria-label="Dismiss notification"
+                  >
+                    <FiX />
+                  </button>
+
+                  {t.duration !== null && t.duration !== undefined && (
+                    <span
+                      className="toast-progress"
+                      style={{ animationDuration: `${t.duration}ms` }}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>,
+          document.body,
+        )}
+    </ToastContext.Provider>
+  );
+};
+
+export const useToast = () => {
+  const ctx = useContext(ToastContext);
+  if (!ctx) {
+    throw new Error("useToast must be used within a ToastProvider");
+  }
+  return ctx;
+};

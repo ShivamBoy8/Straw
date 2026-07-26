@@ -1,0 +1,78 @@
+
+
+.banner-section {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+.banner-overlay-content {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+  padding: clamp(20px, 5vw, 60px);
+  color: #111;
+}
+
+.banner-align-right .banner-overlay-content {
+  margin-left: auto;
+  text-align: right;
+}
+
+.banner-align-right .banner-btn {
+  margin-left: auto;
+}
+
+
+.banner-eyebrow {
+  font-size: clamp(10px, 1vw, 13px);
+  font-weight: 700;
+  letter-spacing: clamp(2px, 0.4vw, 4px);
+  margin-bottom: clamp(10px, 2vw, 18px);
+}
+
+.banner-heading {
+  font-size: clamp(1.8rem, 6vw, 4.2rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin: 0 0 clamp(14px, 2.5vw, 22px);
+}
+
+.banner-desc {
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  line-height: 1.5;
+  color: #333;
+  margin: 0 0 clamp(16px, 3vw, 28px);
+}
+
+.banner-btn {
+  min-width: clamp(140px, 20vw, 220px);
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 1px;
+  padding: clamp(10px, 1.5vw, 14px) clamp(16px, 2vw, 24px);
+  width: fit-content;
+}
+
+
+
+@media (max-width: 480px) {
+  .banner-section {
+    min-height: 50vh;
+  }
+
+  .banner-overlay-content {
+    max-width: none;
+  }
+
+  .banner-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,359 @@
+.gazu-homepage {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  color: #111;
+  --hero-bg: #c6c1be;
+  --section-y: 88px; /* one knob controls spacing between every section */
+}
+
+/* Uniform vertical rhythm between every direct child section of the page,
+   so Category, TopPicks, PromoBanner, and the next TopPicks all breathe
+   the same amount — no more hand-tuned gaps per component. */
+.gazu-homepage > * + * {
+  margin-top: var(--section-y);
+}
+
+.category-nav {
+  margin-top: 24px !important;
+}
+
+.category-nav + * {
+  margin-top: 24px !important;
+}
+
+.hero-section {
+ 
+  margin-top: 0 !important; /* hero is the first section, no extra gap above it */
+}
+
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+ 
+  overflow: hidden;
+}
+
+.hero-img-frame {
+  width: 100%;
+  height: 620px;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* ---------------- BREADCRUMB ---------------- */
+
+.hero-breadcrumb {
+  padding: 22px 60px 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.hero-breadcrumb a {
+  color: #333;
+  text-decoration: none;
+}
+
+.hero-breadcrumb span {
+  margin: 0 6px;
+  color: #999;
+}
+
+.hero-heading {
+  position: absolute;
+  top: 120px;
+  left: 60px;
+  z-index: 2;
+  max-width: 460px;
+}
+
+.hero-heading h1 {
+  font-size: 96px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 0 0 20px;
+  color: #111;
+}
+
+.hero-subline {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: #111;
+}
+
+.hero-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+  max-width: 340px;
+}
+
+/* ---------------- LEFT TOP TAGLINE (legacy) ---------------- */
+
+.hero-tagline {
+  position: absolute;
+  top: 48px;
+  left: 60px;
+  z-index: 2;
+}
+
+.hero-tagline p {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.hero-buttons {
+  position: absolute;
+  left: 60px;
+  bottom: 40px;
+  display: flex;
+  gap: 16px;
+  z-index: 2;
+}
+
+.hero-buttons .btn {
+  min-width: 170px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  white-space: nowrap;
+}
+
+/* ---------------- COLLECTION ---------------- */
+
+.hero-collection {
+  position: absolute;
+  right: 60px;
+  bottom: 40px;
+  text-align: right;
+  z-index: 2;
+}
+
+.hero-collection p {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.hero-collection .line-bar {
+  margin-left: auto;
+}
+
+/* ---------------- COMMON ---------------- */
+
+.line-bar {
+  width: 40px;
+  height: 2px;
+  background: #111;
+}
+
+.btn-dark {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.btn-outline-dark {
+  border-color: #111;
+  color: #111;
+  background: transparent;
+}
+
+.btn-outline-dark:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* =======================================================
+                    FEATURE BAR
+======================================================= */
+
+.feature-bar {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.feature-icon {
+  width: 26px;
+  height: 26px;
+  color: #111;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.feature-desc {
+  font-size: 0.8rem;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+/* =======================================================
+                    TABLET
+======================================================= */
+
+@media (min-width: 901px) {
+  .hero-buttons {
+    position: absolute;
+    left: 60px;
+    bottom: 40px;
+  }
+
+  .hero-collection {
+    position: absolute;
+    right: 60px;
+    bottom: 40px;
+  }
+
+  .hero-tagline {
+    position: absolute;
+    top: 48px;
+    left: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .gazu-homepage {
+    --section-y: 56px;
+  }
+
+   .hero-breadcrumb {
+    padding: 16px 15px 0;
+    font-size: 12px;
+  }
+
+  .hero-heading {
+    left: 15px;
+    top: 55px; /* adjust if needed */
+  }
+
+  .hero-img-frame {
+    height: 55vh;
+    min-height: 320px;
+    max-height: 480px;
+  }
+
+  .hero-heading {
+    top: 24px;
+    left: 15px;
+    max-width: 80%;
+  }
+
+  .hero-heading h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+  }
+
+  .hero-subline {
+    font-size: 13px;
+  }
+
+  .hero-desc {
+    font-size: 12px;
+    max-width: 100%;
+  }
+
+  .hero-tagline {
+    top: 20px;
+    left: 15px;
+  }
+
+  .hero-tagline p {
+    font-size: 9px;
+    letter-spacing: 2px;
+    line-height: 1.5;
+  }
+
+  .hero-collection {
+    display: none;
+  }
+
+  .hero-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-img-frame {
+    order: 1;
+  }
+
+  .hero-buttons {
+    order: 2;
+    position: static;
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: var(--hero-bg);
+  }
+
+  .hero-buttons .btn {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+}
+
+/* =======================================================
+                SMALL MOBILE
+======================================================= */
+
+@media (max-width: 480px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-breadcrumb {
+    padding: 12px 12px 0;
+  }
+
+  .hero-heading {
+    left: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .hero-tagline {
+    left: 12px;
+    top: 12px;
+  }
+
+  .hero-tagline p {
+    font-size: 8px;
+  }
+}

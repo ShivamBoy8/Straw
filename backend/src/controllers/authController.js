@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const generateTokenAndSetCookie = require("../utils/generateToken");
 const validateUser = require("../validators/authValidator");
 const redisClient = require("../config/redis");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
   try {
@@ -108,18 +108,16 @@ const loginUser = async (req, res) => {
   }
 };
 
-
-const logoutUser=async(req,res)=>{
-  try{
-
+const logoutUser = async (req, res) => {
+  try {
     const { token } = req.cookies;
 
-      if (!token) {
-            return res.status(400).json({
-                success: false,
-                message: "No token provided"
-            });
-      }
+    if (!token) {
+      return res.status(400).json({
+        success: false,
+        message: "No token provided",
+      });
+    }
 
     const payload = jwt.decode(token);
 
@@ -128,13 +126,10 @@ const logoutUser=async(req,res)=>{
 
     res.cookie("token", null, { expires: new Date(Date.now()) });
     return res.status(200).json({
-            success: true,
-            message: 'Logged out successfully'
+      success: true,
+      message: "Logged out successfully",
     });
-
-  } catch (err
-
-  ) {
+  } catch (err) {
     console.error("Logout Error:", err);
 
     return res.status(500).json({
@@ -142,47 +137,51 @@ const logoutUser=async(req,res)=>{
       message: err.message,
     });
   }
-}
+};
 
+const getUser = async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password");
 
-const  getUser=async(req,res)=>{
-    res.status(200).json({
-        success: true,
-        user: req.user
-    });
-}
+  return res.status(200).json({
+    success: true,
+    user,
+  });
+};
 
 const updateUser = async (req, res) => {
   try {
-    const { name, email, phone, gender, addresses } = req.body;
+    const updateData = {};
 
-    const updatedUser = await User.findByIdAndUpdate(
-      req.user._id,
-      { name, email, phone, gender, addresses },
-      { new: true, runValidators: true }
-    );
+    Object.entries(req.body).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== "") {
+        updateData[key] = value;
+      }
+    });
+
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, updateData, {
+      returnDocument: "after",
+      runValidators: true,
+    }).select("-password");
 
     if (!updatedUser) {
       return res.status(404).json({
         success: false,
-        message: "User not found"
+        message: "User not found",
       });
     }
 
     return res.status(200).json({
       success: true,
       message: "User updated successfully",
-      user: updatedUser
+      user: updatedUser,
     });
-
   } catch (err) {
     return res.status(500).json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
 };
-
 
 const deleteUser = async (req, res) => {
   try {
@@ -191,7 +190,7 @@ const deleteUser = async (req, res) => {
     if (!deletedUser) {
       return res.status(404).json({
         success: false,
-        message: "User not found"
+        message: "User not found",
       });
     }
 
@@ -199,17 +198,72 @@ const deleteUser = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "User deleted successfully"
+      message: "User deleted successfully",
     });
-
   } catch (err) {
     return res.status(500).json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
 };
 
+const updateAddress = async (req, res) => {
+  try {
+    const { address } = req.body;
+
+    if (!address || address.trim() === "") {
+      return res.status(400).json({
+        success: false,
+        message: "Address is required",
+      });
+    }
+
+    const user = await User.findById(req.user._id);
+
+    user.addresses = address;
+
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Address updated successfully",
+      address: user.addresses,
+    });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+const getAddress = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select("addresses");
+
+    return res.status(200).json({
+      success: true,
+      address: user.addresses,
+    });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
 module.exports = {
-  registerUser,loginUser,logoutUser,getUser,updateUser,deleteUser
+  registerUser,
+  loginUser,
+  logoutUser,
+  getUser,
+  updateUser,
+  deleteUser,
+  updateAddress,
+  getAddress,
 };

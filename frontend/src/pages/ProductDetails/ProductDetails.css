@@ -1,0 +1,486 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+.pd-scope {
+  --ink: #1f1f1f;
+  --ink-soft: #7b746c;
+
+  --paper: #f8f5f1;
+  --panel: #ffffff;
+  --line: #e8e2d8;
+
+  /* Main Accent */
+  --accent: #4a3428;
+
+  /* Text on dark buttons */
+  --accent-ink: #ffffff;
+
+  /* Stock */
+  --in-stock: #58714f;
+  --low-stock: #a37b3f;
+  --out-stock: #8a4747;
+
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+.pd-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 44px 24px 120px;
+}
+
+.pd-crumb {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8d867e;
+  letter-spacing: 0.12em;
+  margin-bottom: 24px;
+}
+
+.pd-thumb,
+.pd-size-tick,
+.pd-color-swatch,
+.pd-cta{
+    transition:.25s ease;
+}
+
+.pd-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 52px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .pd-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+/* Gallery */
+.pd-gallery {
+  position: sticky;
+  top: 28px;
+}
+
+@media (max-width: 900px) {
+  .pd-gallery {
+    position: static;
+  }
+}
+
+.pd-main-shot {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.pd-main-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pd-sale-flag {
+  position: absolute;
+  top: 0;
+  left: 18px;
+  background: #131211;
+  color: #ffffff;
+  font-family: "Anton", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 12px 6px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+}
+
+.pd-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.pd-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 0;
+}
+
+.pd-thumb.is-active {
+  border:2px solid #070707;
+}
+
+.pd-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Info column */
+.pd-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.pd-title {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(30px, 3.6vw, 44px);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  margin: 0 0 12px;
+}
+
+.pd-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.pd-stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.pd-star {
+  width: 17px;
+  height: 17px;
+  display: block;
+}
+
+.pd-star-wrap {
+  position: relative;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+}
+
+.pd-star-wrap .pd-star:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pd-star-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+.pd-rating-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pd-review-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.pd-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 16px 0 18px;
+}
+
+.pd-price {
+  font-family: "Anton", sans-serif;
+  font-size: 30px;
+  letter-spacing: 0.01em;
+}
+
+.pd-price.is-discounted {
+  color: #313131;
+}
+
+.pd-price-strike {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+}
+
+.pd-save-pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #ece4dc;
+  color: #4a3428;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+.pd-desc {
+  color:#5d5852;
+line-height:1.8;
+  line-height: 1.65;
+  font-size: 15px;
+  margin: 0 0 18px;
+}
+
+.pd-meta-line {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+  letter-spacing: 0.02em;
+}
+
+.pd-meta-line b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pd-divider {
+  border: none;
+ border-top:1px solid #ddd3c7;
+  margin: 22px 0;
+}
+
+.pd-section-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+
+/* Colors */
+.pd-colors {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.pd-color-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pd-color-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  box-shadow: inset 0 0 0 2px var(--panel);
+}
+
+.pd-color-swatch.is-selected .pd-color-dot {
+ box-shadow:
+0 0 0 2px white,
+0 0 0 4px #4a3428;
+}
+
+.pd-color-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  text-transform: capitalize;
+}
+
+/* Sizes — ruler strip signature */
+.pd-size-ruler {
+  display: flex;
+  gap: 0;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.pd-size-tick {
+  flex: 0 0 auto;
+  min-width: 52px;
+  text-align: center;
+  padding: 10px 8px 8px;
+  border-bottom: 3px solid var(--line);
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  cursor: pointer;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: var(--ink);
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.pd-size-tick:hover {
+  border-bottom-color: var(--ink-soft);
+}
+
+.pd-size-tick.is-selected {
+  border-bottom-color: #4a3428;
+  color: #4a3428;
+  font-weight: 600;
+}
+
+/* Quantity */
+.pd-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.pd-stepper button {
+  border: none;
+  background: transparent;
+  width: 38px;
+  height: 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.pd-stepper button:hover {
+  background: var(--paper);
+}
+
+.pd-stepper button:disabled {
+  color: var(--line);
+  cursor: not-allowed;
+}
+
+.pd-stepper span {
+  width: 42px;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+}
+
+/* Stock status */
+.pd-stock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  margin-top: 16px;
+}
+
+.pd-stock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.pd-stock.in .pd-stock-dot {
+  background: var(--in-stock);
+}
+.pd-stock.in {
+  color: var(--in-stock);
+}
+
+.pd-stock.low .pd-stock-dot {
+  background: var(--low-stock);
+}
+.pd-stock.low {
+  color: var(--low-stock);
+}
+
+.pd-stock.out .pd-stock-dot {
+  background: var(--out-stock);
+}
+.pd-stock.out {
+  color: var(--out-stock);
+}
+
+.pd-cta {
+  width: 100%;
+  margin-top: 26px;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #0f0f0f;
+  color: white;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.pd-cta:hover {
+  background: #313131;
+}
+
+.pd-cta:disabled {
+  background: var(--line);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .pd-cta {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    box-shadow: 0 10px 26px rgba(20, 20, 20, 0.28);
+    z-index: 20;
+  }
+
+  .pd-wrap {
+    padding-bottom: 100px;
+  }
+}
+
+/* Status pages */
+.pd-status {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 24px;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--ink-soft);
+}
+
+.pd-status.is-error {
+  color: var(--out-stock);
+}
