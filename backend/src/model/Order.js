@@ -25,6 +25,11 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
+
+        size: {
+          type: String,
+          required: true,
+        },
       },
     ],
 
@@ -47,13 +52,7 @@ const orderSchema = new mongoose.Schema(
 
     orderStatus: {
       type: String,
-      enum: [
-        "Pending",
-        "Confirmed",
-        "Shipped",
-        "Delivered",
-        "Cancelled",
-      ],
+      enum: ["Pending", "Confirmed", "Shipped", "Delivered", "Cancelled"],
       default: "Pending",
     },
 
@@ -64,7 +63,7 @@ const orderSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("Order", orderSchema);

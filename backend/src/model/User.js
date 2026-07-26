@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
-    gender:{
-        type:String,
-        enum:["Male","Female"]
+    gender: {
+      type: String,
+      enum: ["Male", "Female"],
     },
     role: {
       type: String,
@@ -36,6 +36,32 @@ const userSchema = new mongoose.Schema(
     },
     addresses: {
       type: String,
+      default: "",
+    },
+    height: {
+      type: Number,
+    },
+
+    weight: {
+      type: Number,
+    },
+
+    age: {
+      type: Number,
+    },
+
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Other"],
+    },
+
+    bodyType: {
+      type: String,
+      enum: ["Slim", "Regular", "Athletic", "Heavy"],
+    },
+
+    footSize: {
+      type: Number,
     },
   },
   {

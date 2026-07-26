@@ -1,0 +1,260 @@
+.footer{
+background:#fff;
+margin-top: 100px;
+}
+
+/* ==================== TOP ==================== */
+
+.footerTop{
+padding:55px 0;
+}
+
+.brandLogo{
+font-size:72px;
+font-family:Georgia,serif;
+letter-spacing:14px;
+font-weight:700;
+animation:fadeUp .9s ease;
+}
+
+.brandTitle{
+font-size:22px;
+font-weight:700;
+letter-spacing:4px;
+text-transform:uppercase;
+margin-bottom:20px;
+}
+
+.brandDesc{
+font-size:18px;
+color:#666;
+line-height:1.8;
+max-width:500px;
+}
+
+.verticalDivider{
+width:1px;
+height:110px;
+background:#ddd;
+}
+
+.mobileLine{
+display:none;
+width:80px;
+height:4px;
+background:#000;
+border-radius:10px;
+margin:18px auto 0;
+}
+
+.sectionDivider{
+ margin:45px 0;
+}
+
+/* ==================== FEATURES ==================== */
+
+.featureCard{
+text-align:center;
+ padding:18px 12px;
+transition:.3s;
+height:100%;
+}
+
+.featureCard:hover{
+transform:translateY(-6px);
+}
+
+.featureCircle{
+width:80px;
+height:80px;
+
+margin:auto;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:#f6f6f6;
+border-radius:50%;
+margin-bottom:20px;
+transition:.3s;
+}
+
+.featureCircle svg{
+font-size:30px;
+transition:.3s;
+}
+
+.featureCard:hover .featureCircle{
+background:#000;
+}
+
+.featureCard:hover svg{
+color:#fff;
+transform:scale(1.15);
+}
+
+.featureCard h5{
+font-size:17px;
+font-weight:700;
+text-transform:uppercase;
+margin-bottom:12px;
+}
+
+.featureCard p{
+font-size:15px;
+color:#666;
+line-height:1.7;
+margin:0;
+}
+
+/* ==================== BOTTOM ==================== */
+
+.footerBottom{
+background:#111;
+color:white;
+padding:45px 0;
+text-align:center;
+}
+
+.footerDivider{
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:35px;
+}
+
+.footerDivider div{
+width:160px;
+height:1px;
+background:#555;
+}
+
+.footerDivider span{
+width:8px;
+height:8px;
+background:#777;
+border-radius:50%;
+margin:0 18px;
+}
+
+.footerBottom h4{
+font-size:20px;
+letter-spacing:3px;
+text-transform:uppercase;
+margin-bottom:25px;
+}
+
+.footerBottom p{
+font-size:15px;
+color:#cfcfcf;
+margin:0;
+}
+
+/* ==================== Animation ==================== */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(25px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* ==================== Responsive ==================== */
+
+@media(max-width:991px){
+
+.footerTop{
+padding:50px 0;
+}
+
+.brandLogo{
+font-size:52px;
+letter-spacing:10px;
+text-align:center;
+}
+
+.mobileLine{
+display:block;
+}
+
+.brandTitle{
+text-align:center;
+font-size:20px;
+margin-top:10px;
+}
+
+.brandDesc{
+text-align:center;
+font-size:16px;
+margin:auto;
+}
+
+.sectionDivider{
+margin:45px 0;
+}
+
+.footerDivider div{
+width:90px;
+}
+
+}
+
+@media(max-width:576px){
+
+.brandLogo{
+font-size:42px;
+letter-spacing:8px;
+}
+
+.brandTitle{
+font-size:17px;
+letter-spacing:2px;
+}
+
+.brandDesc{
+font-size:15px;
+}
+
+.featureCard{
+padding:20px 10px;
+}
+
+.featureCircle{
+width:70px;
+height:70px;
+}
+
+.featureCircle svg{
+font-size:26px;
+}
+
+.featureCard h5{
+font-size:15px;
+}
+
+.featureCard p{
+font-size:14px;
+}
+
+.footerBottom{
+padding:45px 0;
+}
+
+.footerBottom h4{
+font-size:16px;
+letter-spacing:2px;
+}
+
+.footerDivider div{
+width:60px;
+}
+
+}

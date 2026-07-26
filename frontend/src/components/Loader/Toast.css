@@ -1,0 +1,47 @@
+.toast-confirm-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toast-message {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.toast-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.toast-action-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toast-action-btn-primary {
+  background: #111;
+  color: #fff;
+}
+
+.toast-action-btn-secondary {
+  background: #f3f3f3;
+  color: #333;
+}
+
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(17, 17, 17, 0.12);
+}

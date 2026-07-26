@@ -1,0 +1,98 @@
+.promo-banner {
+  width: 100%;
+  height: 520px;
+
+  margin: 80px 0;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+.promo-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.promo-content {
+  color: white;
+  max-width: 650px;
+  padding: 20px;
+}
+
+.promo-content h2 {
+  font-size: 58px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+.promo-content p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.promo-btn {
+  display: inline-block;
+
+  padding: 14px 40px;
+
+  background: white;
+  color: black;
+
+  text-decoration: none;
+
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  transition: 0.3s;
+}
+
+.promo-btn:hover {
+  background: black;
+  color: white;
+}
+
+@media (max-width: 992px) {
+  .promo-banner {
+    height: 420px;
+  }
+
+  .promo-content h2 {
+    font-size: 42px;
+  }
+
+  .promo-content p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .promo-banner {
+    height: 320px;
+  }
+
+  .promo-content h2 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .promo-content p {
+    font-size: 15px;
+  }
+
+  .promo-btn {
+    padding: 12px 28px;
+  }
+}

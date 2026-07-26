@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const upload = require("../middleware/upload");
-const {createProduct, updateProduct, deleteProduct, getProductById, getAllProduct} = require("../controllers/productController");
+const {createProduct, updateProduct, deleteProduct, getProductById, getAllProduct, getSimilarProduct} = require("../controllers/productController");
 const authMiddleware = require("../middleware/authMiddleware");
 const adminMiddleware = require("../middleware/adminMiddleware");
 
@@ -30,7 +30,8 @@ router.delete(
 );
 
 
-router.get("/:id", getProductById);
+router.get("/similar/:id", getSimilarProduct);
 router.get("/", getAllProduct);
+router.get("/:id", getProductById);
 
 module.exports = router;

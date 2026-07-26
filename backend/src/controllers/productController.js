@@ -207,11 +207,13 @@ const getAllProduct = async (req, res) => {
       category,
       brand,
       featured,
+      subCategory,
       minPrice,
       maxPrice,
       sort,
+      size,
       page = 1,
-      limit = 10,
+      limit,
     } = req.query;
 
     let query = {};
@@ -237,6 +239,14 @@ const getAllProduct = async (req, res) => {
       query.category = category;
     }
 
+    if (subCategory) {
+      query.subCategory = subCategory;
+    }
+
+    if (size) {
+      query.sizes = size;
+    }
+
     if (brand) {
       query.brand = brand;
     }
@@ -257,8 +267,8 @@ const getAllProduct = async (req, res) => {
       }
     }
 
-    const currentPage = Number(page);
-    const pageSize = Number(limit);
+    const currentPage = Number(page) || 1;
+    const pageSize = Number(limit) || 100;
     const skip = (currentPage - 1) * pageSize;
 
     const totalProducts = await Product.countDocuments(query);
@@ -291,10 +301,22 @@ const getAllProduct = async (req, res) => {
   }
 };
 
+const getSimilarProduct = async (req, res) => {
+  const product = await Product.findById(req.params.id);
+
+  const similarProducts = await Product.find({
+    category: product.category,
+    _id: { $ne: product._id },
+  }).limit(4);
+
+  res.json(similarProducts);
+};
+
 module.exports = {
   createProduct,
   updateProduct,
   deleteProduct,
   getProductById,
   getAllProduct,
+  getSimilarProduct,
 };

@@ -1,0 +1,137 @@
+.top-picks {
+  padding: 0 5%;
+}
+
+.top-picks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 36px;
+  gap: 24px;
+}
+
+.top-picks-heading-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.top-picks-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #a88a5a;
+}
+
+.top-picks-header h2 {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #111;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.top-picks-subtitle {
+  font-size: 15px;
+  color: #6b6b6b;
+  margin: 2px 0 0;
+  max-width: 480px;
+}
+
+.view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, gap 0.25s ease;
+  white-space: nowrap;
+}
+
+.view-all:hover {
+  border-color: #111;
+  gap: 10px;
+}
+
+.view-all-arrow {
+  transition: transform 0.25s ease;
+}
+
+.view-all:hover .view-all-arrow {
+  transform: translateX(2px);
+}
+
+.top-picks-grid {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding-bottom: 14px;
+  scroll-snap-type: x proximity;
+}
+
+.top-picks-grid::-webkit-scrollbar {
+  height: 4px;
+}
+
+.top-picks-grid::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.top-picks-grid .product-card {
+  flex: 0 0 270px;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.top-picks-grid .product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card-skeleton {
+  flex: 0 0 270px;
+  height: 360px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-picks-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .top-picks-header h2 {
+    font-size: 24px;
+  }
+
+  .top-picks-grid .product-card,
+  .product-card-skeleton {
+    flex: 0 0 200px;
+  }
+
+  .product-card-skeleton {
+    height: 280px;
+  }
+}

@@ -8,16 +8,16 @@ const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const adminOrderRoutes = require("./routes/adminOrderRoutes");
 const aiRoutes = require("./routes/aiRoutes");
-
+const cors = require("cors");
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:5174"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser())
 
-app.get("/", (req, res) => {
-    res.json({
-        success: true,
-        message: "STRAW Backend Running "
-    });
-});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);

@@ -257,11 +257,48 @@ const updateOrderStatus = async (req, res) => {
     });
   }
 };
+
+const getAdminOrderById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid order id",
+      });
+    }
+
+    const order = await Order.findById(id)
+      .populate("user", "name email")
+      .populate("items.product");
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      order,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+
 module.exports = {
   createOrder,
   getMyOrders,
   getOrderById,
   cancelOrder,
   getAllOrders,
+  getAdminOrderById,
   updateOrderStatus,
 };
