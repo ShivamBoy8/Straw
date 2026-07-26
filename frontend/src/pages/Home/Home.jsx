@@ -8,7 +8,7 @@ import { FiLock, FiPackage, FiShield, FiTruck } from "react-icons/fi";
 import NewVibes from "./NewVibes";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
-import ProductSection from "../../components/ProductSection/ProductSection";
+import ProductSection from "../../components/Productsection/ProductSection";
 import { Link, useNavigate } from "react-router-dom";
 
 const categories = [
