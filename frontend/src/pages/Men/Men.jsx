@@ -1,6 +1,6 @@
 import CategoryLanding from "../../components/CategoryLanding/CategoryLanding";
 
-import hero from "../../assets/assetsfooter/NewVibes.jpeg";
+import hero from "../../assets/assetsfooter/newVibes.jpeg";
 
 import banner from "../../assets/assetsfooter/summarmen.png";
 
