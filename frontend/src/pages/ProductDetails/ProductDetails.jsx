@@ -5,7 +5,7 @@ import "./ProductDetails.css";
 import { GiPartyPopper } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getCart } from "../../features/cart/cartSlice";
-import ProductSection from "../../components/ProductSection/ProductSection";
+import ProductSection from "../../components/Productsection/ProductSection";
 import AISizeRecommendation from "../../components/AISizeRecommendation/AISizeRecommendation";
 import { resolveColor } from "../../utils/colorMap";
 
