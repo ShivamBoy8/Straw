@@ -1,6 +1,6 @@
 import React from "react";
 import BannerSection from "../../components/Banner/Bannersection";
-import vibesImage from "../../assets/assetsfooter/newvibes.jpeg";
+import vibesImage from "../../assets/assetsfooter/newVibes.jpeg";
 
 const NewVibes = () => {
   return (
