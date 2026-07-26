@@ -1,5 +1,5 @@
 import React from "react";
-import "./BannerSection.css";
+import "./Bannersection.css";
 import { Link } from "react-router-dom";
 const BannerSection = ({
   image,
